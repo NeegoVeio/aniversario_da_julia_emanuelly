@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR"> 
+<head>    
+  <meta charset="UTF-8">    
+  <title>🎂 Sistema de Aniversário Iniciado</title> 
+  <style> 
+    body {  /* Estilo geral do corpo da página*/
+      margin: 0; /* Remove a margem padrão do corpo */
+      padding: 0; /* Remove o preenchimento padrão do corpo */
+      overflow: hidden; /* Remove a barra de rolagem */
+      background-color: black; /* Cor de fundo preta */
+      color: #6002adf1; /* Cor do texto padrão */
+      font-family: 'Courier New', monospace; /* Fonte monoespaçada */
+    }
+
+    .tela-inicial {/* Tela inicial com mensagem de boas-vindas*/
+      width: 100%; /* Largura total da tela */
+      height: 100vh; /* Altura total da tela */
+      background-color: rgb(255, 251, 251); /* Cor de fundo branca */
+      display: flex; /* Flexbox para centralizar o conteúdo */
+      justify-content: center; /* Centraliza o conteúdo horizontalmente */
+      align-items: center; /* Centraliza o conteúdo verticalmente */
+      flex-direction: column; /* Direção do conteúdo em coluna */
+      color: #6002adf1; /* Cor do texto */
+    }
+
+    .tela-inicial button { /* Botão para iniciar a experiência */
+      margin-top: 20px; /* Margem superior do botão */
+      font-size: 1.5em; /* Tamanho da fonte do botão */
+      padding: 10px 30px; /* Espaçamento interno do botão */
+      background-color: #1f5bcc; /* Cor de fundo do botão */
+      color: rgb(255, 255, 255); /* Cor do texto do botão */
+      border: none; /* Sem borda */
+      cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+      border-radius: 10px; /* Bordas arredondadas do botão */
+    }
+
+    .tela-hack { /* Tela de hack com animação de piscar */
+      width: 100%; /* Largura total da tela */
+      height: 100vh; /* Altura total da tela */
+      background-color: black; /* Cor de fundo preta */
+      color: red; /* Cor do texto vermelha */
+      display: none; /* Inicialmente oculta */
+      justify-content: center; /* Centraliza o conteúdo horizontalmente */
+      align-items: center;  /* Centraliza o conteúdo verticalmente */ 
+      flex-direction: column; /* Direção do conteúdo em coluna */
+      font-size: 2em; /* Tamanho da fonte */
+      animation: piscar 1s infinite; /* Animação de piscar */
+    }
+
+    @keyframes piscar { /* Animação de piscar */
+      0%, 100% { opacity: 2; } /* 0% e 100% da animação */ 
+      50% { opacity: 0.5; } /* 50% da animação */ 
+    }
+
+    .tela-recarregando { /* Tela de recarregando com animação de carregamento */
+      display: none;
+      color: rgb(255, 0, 0); /* Cor do texto */
+      font-size: 1.5em;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: rgb(0, 0, 0); /* Cor de fundo preta */
+    }
+
+    .conteudo-principal { /* Conteúdo principal com animação de fade-in */
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    #photo { /* Imagem de fundo com animação de fade-in */
+      width: 225px;
+      height: 225px;
+      border-radius: 20px;
+      object-fit: cover;
+      border: 3px solid #9900ff;
+      box-shadow: 0 0 20px #b700ff;
+      animation: fadeIn 2s ease-in-out;
+      margin-top: 30px;
+    }
+
+    @keyframes fadeIn { /* Animação de fade-in */
+      0% { opacity: 0; } /* Início da animação */
+      50% { opacity: 0.5; } /* Meio da animação */
+      100% { opacity: 1; } /* Fim da animação */
+    }
+
+  #terminal { /* Estilo do terminal com fundo verde e texto branco */
+    background: rgb(255, 255, 255);
+    border: 1px solid #ffffff;
+    padding: 20px;
+    width: 90%;
+    max-width: 800px;
+    height: 250px; /* aumentei de 300px para 400px */
+    overflow: auto;
+    white-space: pre-wrap;
+    font-size: 1.1em;
+    box-shadow: 0 0 20px #6002adf1;
+    margin-top: 20px;
+    }
+
+    #explosion { /* Estilo da explosão com animação de explosão */
+      font-size: 2em;
+      color: #ff0000;
+      margin-top: 30px;
+      display: none;
+      animation: explode 0.9s ease-in-out;
+      text-align: center;
+    }
+
+    @keyframes explode { /* Animação de explosão */
+      0% { transform: scale(0.5); opacity: 0; }
+      100% { transform: scale(1.3); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Tela inicial --> 
+  <div class="tela-inicial" id="telaInicial">
+    <h1>🎁 Clique para iniciar a surpresa 🎁</h1>
+    <button onclick="iniciarExperiencia()">Iniciar</button>
+  </div>
+
+  <!-- Tela de hack -->
+  <div class="tela-hack" id="hack">
+    ⚠️ VOCÊ FOI HACKEADA☠️ ⚠️
+    <br>
+    <img src="./foto 1.png" alt="Foto 1" width="300" height="400">
+  </div> 
+ 
+
+  <!-- Tela de carregamento -->
+  <div class="tela-recarregando" id="recarregando">
+    ROUBANDO SEUS DADOS ☠️...
+  </div>
+
+  <!-- Conteúdo final -->
+  <div class="conteudo-principal" id="principal">
+    <h1>🎉 Inicializando Protocolo de Aniversário...</h1>
+
+     <br>
+ 
+    <img src="./foto 2.png" alt="Foto 2" id="photo">    
+
+      <div id="terminal"></div> 
+      <div id="explosion" style="display: none;"> <div style="color: #ffffff; font-size: 2em; text-align: center;">
+      <p>💥 <span style="color: #ffffff;">FELIZ ANIVERSÁRIO, JULIA!</span> 🎂</p>
+      <p>🎻 Você é a melhor violinista e acrobata mais linda do mundo! 🎻</p>
+    </div>
+</div>
+  </div>
+
+  <audio id="bg-music" loop autoplay> 
+    <source src="./Meia Noite.mp3" type="audio/mpeg">
+  </audio>
+
+  <script> /* Script para o funcionamento do código */ 
+    const telaInicial = document.getElementById('telaInicial'); /* Tela inicial */ 
+    const hack = document.getElementById('hack'); /* Tela de hackeamento */ 
+    const recarregando = document.getElementById('recarregando'); /* Tela de recarregamento */ 
+    const principal = document.getElementById('principal'); /* Tela principal onde o texto será exibido */ 
+    const terminal = document.getElementById('terminal'); /* Terminal onde o texto será exibido */ 
+    const music = document.getElementById('bg-music'); /* Música de fundo */ 
+    const explosion = document.getElementById('exploDsion'); /* Elemento da explosão */ 
+    
+
+    const texto = [ /* Texto a ser exibido no terminal */
+      ">> Boot do sistema de felicitações iniciado...",
+      ">> Acessando banco de dados: aniversariante_joia_preciosa.db",
+      ">> Localizando perfil.",
+      ">> Localizando perfil..",
+      ">> Localizando perfil...",
+      ">> Perfil encontrado: JULIA EMANUELLY",
+      ">> Status: VIOLINISTA EXTRAORDINÁRIA 🎻 e ACROBATA MAIS LINDA DO MUNDO 🤸‍♀️✨",
+      ">> Compilando mensagem personalizada...",
+      "",
+      ">> Requer autenticação para prosseguir...",
+      ">> LOGIN: juliaeqs",
+      ">> SENHA: ************",
+      ">> Acesso concedido ✅",
+      "",
+      "💾 Carregando conteúdo emocional...",
+      "",
+      ">> Hoje é o seu dia. E não é um dia qualquer...",
+      ">> É o início de mais um ciclo cheio de oportunidades, conquistas e alegrias!",
+      ">> Desejo que você tenha saúde, sucesso e muitos códigos felizes no coração 🧠💖",
+      ">> Julia, que cada byte da sua vida seja preenchido com amor, paz e sabedoria.",
+      ">> Na verdade eu terminei muito antes do que você imaginava.",
+      ">> Cada dia que passava, eu percebia o com importante você estava se tornando pra mim.",
+      ">> Muito obrigado por tudo, por todas nossas conversas.",
+      ">> Você é especial. Única. Insubstituível.",
+      ">> Princesa virtuosa, quem a achará?",
+      ">> Você é mais valiosa do que pérolas.",
+      "",
+      ">> JULIA EMANUELLY",
+      ">> Sistema de amor e carinho: [LIGANDO...]",
+      ">> Sistema de amor e carinho: [0% ATIVO]",
+      ">> Sistema de amor e carinho: [1% ATIVO]",
+      ">> Sistema de amor e carinho: [2% ATIVO]",   
+      ">> Sistema de amor e carinho: [3% ATIVO]",
+      ">> Sistema de amor e carinho: [4% ATIVO]",
+      ">> Sistema de amor e carinho: [5% ATIVO]",
+      ">> Sistema de amor e carinho: [6% ATIVO]",
+      ">> Sistema de amor e carinho: [7% ATIVO]",
+      ">> Sistema de amor e carinho: [8% ATIVO]",
+      ">> Sistema de amor e carinho: [9% ATIVO]",
+      ">> Sistema de amor e carinho: [10% ATIVO]",
+      ">> Sistema de amor e carinho: [20% ATIVO]",
+      ">> Sistema de amor e carinho: [30% ATIVO]",
+      ">> Sistema de amor e carinho: [40% ATIVO]",
+      ">> Sistema de amor e carinho: [50% ATIVO]",
+      ">> Sistema de amor e carinho: [60% ATIVO]",
+      ">> Sistema de amor e carinho: [70% ATIVO]",
+      ">> Sistema de amor e carinho: [80% ATIVO]",
+      ">> Sistema de amor e carinho: [90% ATIVO]",  
+      ">> Sistema de amor e carinho: [99% ATIVO]",
+      ">> Sistema de amor e carinho: [100% ATIVO]",
+
+      "",
+      ">> Contagem regressiva em...",
+      ">> 3...",
+      ">> 2...",
+      ">> 1...",
+      ">> FELIZ ANIVERSÁRIO PARA VIOLINISTA EXTRAORDINÁRIA 🎻 e ACROBATA MAIS LINDA DO MUNDO 🤸‍♀️✨",
+      ""
+    ];
+
+    function iniciarExperiencia() { /* Função para iniciar a experiência */ 
+      telaInicial.style.display = 'none';
+      hack.style.display = 'flex';
+      music.volume = 1;
+      music.play();
+
+      setTimeout(() => {
+        hack.style.display = 'none';
+        recarregando.style.display = 'flex';
+
+        setTimeout(() => {
+          recarregando.style.display = 'none';
+          principal.style.display = 'flex';
+          escrever();
+        }, 3000);
+      }, 5000);
+    }
+
+    let i = 0; /* Contador para o texto */ 
+    let j = 0; /* Contadores para o texto e os caracteres */ 
+    let linhaAtual = ''; /* Variável para armazenar a linha atual do texto */ 
+
+    function escrever() { /* Função para escrever o texto no terminal */ 
+      if (i < texto.length) { /* Verifica se ainda há texto para escrever */
+        linhaAtual = texto[i];
+        if (j < linhaAtual.length) { /* Verifica se ainda há caracteres para escrever na linha atual */
+          terminal.innerHTML += linhaAtual.charAt(j); /* Adiciona o próximo caractere ao terminal */
+          j++;
+          terminal.scrollTop = terminal.scrollHeight; /* Rola o terminal para baixo para mostrar o texto mais recente */
+          setTimeout(escrever, 20); /* Chama a função novamente após um pequeno atraso */
+        } else { /* Se a linha atual foi completamente escrita */
+          terminal.innerHTML += '\n'; /* Adiciona uma nova linha */
+          i++; /* Avança para a próxima linha do texto */ 
+          j = 0; /* Reinicia o contador de caracteres da linha atual */ 
+          terminal.scrollTop = terminal.scrollHeight;  /* Rola o terminal para baixo novamente */ 
+          setTimeout(escrever, 300); /* Chama a função novamente após um pequeno atraso */ 
+        }
+      } else { /* Se todo o texto foi escrito */ 
+        explosion.style.display = 'block'; /* Exibe a explosão */
+        explosion.style.animation = 'fadeIn 2s forwards'; /* Adiciona a animação de fade-in */
+      }
+    } 
+  </script>
+</body>
+</html>
